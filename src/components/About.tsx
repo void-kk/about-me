@@ -1,88 +1,152 @@
 import { motion } from "framer-motion";
+import { Code2, Palette, Terminal, Zap, ExternalLink, Briefcase } from "lucide-react";
 
 export default function About() {
   const experiences = [
     {
       company: "테크 스타트업 A",
-      role: "시니어 프론트엔드 개발자",
-      period: "2022 - 현재",
-      description: "React와 TypeScript를 도입하여 레거시 코드를 리팩토링하고, 디자인 시스템을 구축하여 개발 생산성을 30% 향상시켰습니다."
+      role: "Senior FE Dev",
+      period: "2022 - Present",
+      description: "React/TS 기반 디자인 시스템 구축 및 렌더링 성능 30% 개선",
+      tags: ["React", "System Design"]
     },
     {
       company: "웹 에이전시 B",
-      role: "웹 퍼블리셔 & 개발자",
+      role: "Web Developer",
       period: "2019 - 2022",
-      description: "다양한 클라이언트의 브랜드 웹사이트를 제작하였으며, 웹 접근성 지침을 준수하여 프로젝트를 수행했습니다."
+      description: "20+ 개 이상의 반응형 웹사이트 제작 및 인터랙션 구현",
+      tags: ["Next.js", "GSAP"]
     }
   ];
 
-  const skills = [
-    "React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "GraphQL", "Framer Motion", "Git"
+  const skillCategories = [
+    {
+      title: "Main Stack",
+      icon: Code2,
+      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+      color: "bg-blue-50 text-blue-600"
+    },
+    {
+      title: "Tools & DevOps",
+      icon: Terminal,
+      skills: ["Git", "GitHub Actions", "Docker", "Vite"],
+      color: "bg-gray-50 text-gray-700"
+    },
+    {
+      title: "Design & UX",
+      icon: Palette,
+      skills: ["Figma", "Framer Motion", "UI/UX", "Accessibility"],
+      color: "bg-purple-50 text-purple-600"
+    }
   ];
 
   return (
-    <section className="py-20 px-8 bg-white" id="about">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="text-4xl font-bold text-primary mb-6">소개</h2>
-          <p className="text-lg text-gray-600 leading-relaxed break-keep">
-            안녕하세요! 저는 아름답고 기능적인 웹 경험을 만드는 것에 열정을 가진 개발자입니다.
-            최신 프론트엔드 기술에 대한 깊은 이해를 바탕으로, 깔끔하고 유지보수 가능한 코드를 작성하여
-            실질적인 문제를 해결하는 것을 목표로 합니다. 코딩을 하지 않을 때는 새로운 카페를 탐방하거나
-            최신 기술 트렌드를 공부하며 시간을 보냅니다.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Experience Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 border-b-2 border-secondary inline-block pb-2">
-              경력
-            </h3>
-            <div className="space-y-8">
-              {experiences.map((exp, index) => (
-                <div key={index} className="relative pl-6 border-l-2 border-gray-100">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-secondary border-4 border-white" />
-                  <h4 className="text-xl font-bold text-gray-800 break-keep">{exp.role}</h4>
-                  <p className="text-primary font-medium mb-2">{exp.company}</p>
-                  <span className="text-sm text-gray-400 mb-3 block">{exp.period}</span>
-                  <p className="text-gray-600 break-keep">{exp.description}</p>
+    <section className="py-24 px-6 md:px-12 bg-gray-50 relative" id="projects">
+      <div className="max-w-7xl mx-auto">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Left Column: Experience (Bento Grid Style) - Span 7 */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            <div className="flex items-center gap-2 mb-2">
+               <Briefcase className="w-5 h-5 text-gray-400" />
+               <h3 className="text-xl font-bold text-gray-800">Projects & Experience</h3>
+            </div>
+            
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 group"
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
+                  <div>
+                    <h4 className="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">{exp.role}</h4>
+                    <p className="text-gray-500 font-medium">{exp.company}</p>
+                  </div>
+                  <span className="inline-block px-4 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-600">
+                    {exp.period}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </motion.div>
+                
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {exp.description}
+                </p>
 
-          {/* Skills Column */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 border-b-2 border-secondary inline-block pb-2">
-              기술 스택
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
-                <span 
-                  key={index}
-                  className="px-4 py-2 bg-gray-50 text-primary rounded-full font-medium border border-gray-100 hover:border-secondary hover:bg-secondary/10 transition-colors cursor-default"
+                <div className="flex gap-2">
+                   {exp.tags.map(tag => (
+                     <span key={tag} className="text-xs font-bold text-primary bg-primary/5 px-3 py-1 rounded-md">
+                        #{tag}
+                     </span>
+                   ))}
+                </div>
+              </motion.div>
+            ))}
+            
+            {/* CTA Card */}
+            <motion.div
+               whileHover={{ scale: 1.02 }}
+               className="bg-primary p-8 rounded-3xl text-white flex items-center justify-between cursor-pointer group"
+            >
+               <div>
+                 <h4 className="text-2xl font-bold mb-1">Download Resume</h4>
+                 <p className="text-white/70 text-sm">PDF Format, Last updated Feb 2026</p>
+               </div>
+               <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-colors">
+                  <ExternalLink className="w-6 h-6" />
+               </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Skills (Bento Grid Style) - Span 5 */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+             <div className="flex items-center gap-2 mb-2">
+               <Zap className="w-5 h-5 text-gray-400" />
+               <h3 className="text-xl font-bold text-gray-800">Tech Stack</h3>
+            </div>
+
+            <div className="grid gap-4">
+              {skillCategories.map((cat, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.1 }}
+                  className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  {skill}
-                </span>
+                  <div className={`w-10 h-10 ${cat.color} rounded-xl flex items-center justify-center mb-4`}>
+                    <cat.icon className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-3">{cat.title}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {cat.skills.map(skill => (
+                      <span key={skill} className="px-3 py-1.5 bg-gray-50 text-gray-600 text-sm rounded-lg font-medium border border-gray-100">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
               ))}
             </div>
-          </motion.div>
+
+            {/* Quote Card */}
+            <div className="bg-secondary p-8 rounded-3xl mt-auto relative overflow-hidden">
+               <div className="relative z-10">
+                 <p className="text-primary font-bold text-xl leading-snug mb-4">
+                   "Good design is obvious. Great design is transparent."
+                 </p>
+                 <p className="text-primary/70 text-sm font-medium">- Joe Sparano</p>
+               </div>
+               <div className="absolute -bottom-4 -right-4 text-primary/10">
+                  <Code2 className="w-32 h-32" />
+               </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

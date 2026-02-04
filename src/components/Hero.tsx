@@ -1,101 +1,141 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Mail, ArrowRight, BookOpen } from "lucide-react";
 
 export default function Hero() {
+  const socialLinks = [
+    { icon: Github, href: "https://github.com/void-kk" },
+    { icon: BookOpen, href: "https://void-kk.github.io/my-blog" }, 
+    { icon: Mail, href: "mailto:juuyoung9575@gmail.com" },
+  ];
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen w-full relative">
-      {/* Left Side - Content */}
-      <div className="w-full md:w-1/2 bg-primary p-8 md:p-16 flex flex-col justify-between relative overflow-hidden">
+      {/* Left Side - Content (Purple) */}
+      <div className="w-full md:w-1/2 bg-primary p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden group z-10">
         {/* Background decorative elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 border border-white/10 rounded-full" />
-        <div className="absolute bottom-20 right-20 w-32 h-32 border-2 border-white/5 rotate-45" />
+        <div className="absolute top-10 left-10 w-32 h-32 border border-white/5 rounded-full blur-xl group-hover:blur-2xl transition-all duration-700" />
+        <div className="absolute bottom-20 right-20 w-64 h-64 border-[30px] border-white/5 rotate-12 blur-sm group-hover:rotate-45 transition-all duration-1000 ease-out" />
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="relative z-10"
         >
-          <h1 className="text-2xl font-bold text-secondary mb-2">Ju Young</h1>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-[2px] w-12 bg-secondary" />
+            <span className="text-secondary font-medium tracking-wider uppercase text-sm">Portfolio 2026</span>
+          </div>
+          
+          <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] mb-8 tracking-tight">
+            JUYOUNG
+            <span className="block text-stroke text-transparent hover:text-secondary/20 transition-colors duration-500">
+              KIM
+            </span>
+          </h1>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="z-10"
+          className="relative z-10"
         >
-          <h2 className="text-5xl md:text-7xl font-black text-secondary leading-tight mb-6">
-            프론트엔드
-            <br />
-            개발자.
+          <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-6 flex items-center gap-2">
+            Frontend Developer
+            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
           </h2>
-          <p className="text-white/90 text-lg md:text-xl max-w-md font-light leading-relaxed break-keep">
-            사용자 경험을 최우선으로 생각하며, 견고하고 확장 가능한 웹 제품을 만드는 것을 좋아합니다.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 md:mt-0 grid grid-cols-2 gap-8 text-white/70 text-sm"
-        >
-          <div>
-            <p className="mb-2 font-semibold text-white">Expertise</p>
-            <p className="break-keep">반응형 웹 디자인, UI/UX 엔지니어링, 성능 최적화</p>
-          </div>
-          <div>
-            <p className="mb-2 font-semibold text-white">Experience</p>
-            <p className="break-keep">다양한 프로젝트 리딩 및 협업 경험 보유</p>
-          </div>
+          
+          <button 
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="flex items-center gap-2 px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-white transition-all transform hover:scale-105 group mt-8"
+          >
+            Projects
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
         </motion.div>
       </div>
 
-      {/* Right Side - Image & Navigation */}
-      <div className="w-full md:w-1/2 bg-secondary p-8 md:p-16 flex flex-col items-center justify-center relative">
-        {/* Navigation - Top Right */}
-        <div className="absolute top-8 right-8 flex gap-4">
-          <div className="flex flex-col gap-1.5 cursor-pointer group">
-            <div className="w-8 h-0.5 bg-primary group-hover:w-6 transition-all" />
-            <div className="w-6 h-0.5 bg-primary group-hover:w-8 transition-all ml-auto" />
-          </div>
+      {/* Right Side - Introduction & Animation (Lime) */}
+      <div className="w-full md:w-1/2 bg-[#E1F664] p-8 md:p-16 flex flex-col items-center justify-center relative overflow-hidden">
+        
+        
+
+        {/* 1. Background Pattern */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#3B27BA 1px, transparent 1px)', backgroundSize: '30px 30px' }} 
+        />
+
+        {/* 2. Geometric Animation (Background Layer) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40 md:opacity-100">
+             {/* Large Rotating Wireframe Circle */}
+             <motion.div
+               animate={{ rotate: 360 }}
+               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+               className="w-[400px] h-[400px] border border-primary/10 rounded-full absolute"
+             />
+             
+             {/* Floating Cube (Visual Decoration) */}
+             <motion.div
+               animate={{ 
+                 y: [0, -30, 0],
+                 rotateZ: [0, 10, -10, 0],
+               }}
+               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+               className="absolute top-20 right-20 w-16 h-16 border-2 border-primary/20 rounded-xl hidden md:block"
+             />
         </div>
 
-        {/* Decorative Elements */}
-        <div className="absolute top-20 left-20 grid grid-cols-4 gap-2 opacity-50">
-          {[...Array(16)].map((_, i) => (
-            <div key={i} className="w-1 h-1 bg-primary rounded-full" />
+        {/* 3. Introduction Content (Foreground Layer) */}
+        <motion.div 
+           initial={{ opacity: 0, scale: 0.95 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ duration: 0.8, delay: 0.4 }}
+           className="relative z-20 max-w-md text-center md:text-left"
+        >
+           <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
+             <span className="w-12 h-[2px] bg-primary/20" />
+             <span className="text-primary font-bold uppercase tracking-widest text-sm">About Me</span>
+           </div>
+           
+           <h3 className="text-4xl md:text-5xl font-black text-primary mb-8 leading-tight">
+             Creative Developer <br />
+             <span className="text-primary/60">Solving Problems.</span>
+           </h3>
+           
+           <p className="text-lg text-primary/80 leading-relaxed font-medium break-keep">
+             단순히 코드를 작성하는 것을 넘어, 사용자가 겪는 문제를 기술적으로 해결하는 과정에 몰입합니다.
+             심미적인 디자인과 효율적인 로직 사이의 균형을 중요하게 생각합니다.
+           </p>
+
+           {/* Floating Juyoung Cube (Integrated here) */}
+           <motion.div
+              animate={{ 
+                y: [0, -10, 0],
+                rotate: [0, 5, -5, 0]
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="mt-12 w-full flex justify-center md:justify-start"
+           >
+              <div className="w-auto inline-flex items-center gap-3 px-6 py-3 bg-white border-2 border-primary rounded-xl shadow-[4px_4px_0px_#3B27BA] transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-default">
+                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+                  <span className="font-bold text-primary">Juyoung Kim</span>
+              </div>
+           </motion.div>
+        </motion.div>
+
+        {/* Social Links */}
+        <div className="absolute bottom-12 right-12 flex flex-col gap-4 z-30">
+          {socialLinks.map((item, idx) => (
+             <a key={idx} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/50 backdrop-blur-sm border border-primary/10 rounded-full hover:bg-primary hover:text-white transition-all duration-300 text-primary group shadow-sm hover:shadow-md">
+                <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+             </a>
           ))}
         </div>
-        
-        <div className="absolute bottom-20 left-20">
-          <svg width="60" height="60" viewBox="0 0 100 100" className="text-primary opacity-50">
-             <path d="M0 0 L20 20 M20 20 L0 40 M0 40 L20 60 M20 60 L0 80" stroke="currentColor" strokeWidth="2" fill="none" />
-          </svg>
-        </div>
 
-        <div className="absolute bottom-20 right-10 flex flex-col gap-4 text-primary">
-            <Github className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform" />
-            <Twitter className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform" />
-            <Linkedin className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform" />
-            <Mail className="w-5 h-5 cursor-pointer hover:scale-110 transition-transform" />
-        </div>
-
-        {/* Hero Image Frame */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative z-10"
-        >
-          <div className="w-64 h-64 md:w-80 md:h-80 bg-gray-200 relative overflow-hidden group">
-             {/* Placeholder Image - replace with actual photo */}
-             <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500 group-hover:bg-gray-400 transition-colors">
-                <span className="text-sm">Profile Image</span>
-             </div>
-             <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-primary z-[-1]" />
-          </div>
-        </motion.div>
       </div>
     </div>
   );
