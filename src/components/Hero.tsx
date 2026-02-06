@@ -128,7 +128,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Social Links */}
-        <div className="absolute bottom-12 right-12 flex flex-col gap-4 z-30">
+        <div className="flex flex-row md:flex-col gap-4 z-30 mt-8 md:mt-0 md:absolute md:bottom-12 md:right-12">
           {socialLinks.map((item, idx) => (
              <a key={idx} href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/50 backdrop-blur-sm border border-primary/10 rounded-full hover:bg-primary hover:text-white transition-all duration-300 text-primary group shadow-sm hover:shadow-md">
                 <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
