@@ -4,6 +4,13 @@ import { Code2, Palette, Terminal, Zap, ExternalLink, Briefcase } from "lucide-r
 export default function About() {
   const experiences = [
     {
+      company: "Google DeepMind",
+      role: "AI Engineering Team",
+      period: "2025 - Present",
+      description: "차세대 AI 코딩 에이전트 개발에 참여하여, 복잡한 개발 작업을 자율적으로 수행하는 에이전트의 추론 엔진 및 도구 통합 기능을 구현했습니다.",
+      tags: ["Python", "LLM", "Agentic Workflow"]
+    },
+    {
       company: "테크 스타트업 A",
       role: "Senior FE Dev",
       period: "2022 - Present",
@@ -60,28 +67,30 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 group"
+                className="bg-white p-8 rounded-3xl shadow-sm transition-all duration-300 group card-gradient-border"
               >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
-                  <div>
-                    <h4 className="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">{exp.role}</h4>
-                    <p className="text-gray-500 font-medium">{exp.company}</p>
+                <div className="relative z-10 bg-white h-full w-full rounded-[inherit]">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
+                    <div>
+                      <h4 className="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">{exp.role}</h4>
+                      <p className="text-gray-500 font-medium">{exp.company}</p>
+                    </div>
+                    <span className="inline-block px-4 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-600">
+                      {exp.period}
+                    </span>
                   </div>
-                  <span className="inline-block px-4 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-600">
-                    {exp.period}
-                  </span>
-                </div>
-                
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {exp.description}
-                </p>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {exp.description}
+                  </p>
 
-                <div className="flex gap-2">
-                   {exp.tags.map(tag => (
-                     <span key={tag} className="text-xs font-bold text-primary bg-primary/5 px-3 py-1 rounded-md">
-                        #{tag}
-                     </span>
-                   ))}
+                  <div className="flex gap-2">
+                     {exp.tags.map(tag => (
+                       <span key={tag} className="text-xs font-bold text-primary bg-primary/5 px-3 py-1 rounded-md">
+                          #{tag}
+                       </span>
+                     ))}
+                  </div>
                 </div>
               </motion.div>
             ))}

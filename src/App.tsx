@@ -1,9 +1,11 @@
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <main className="w-full overflow-hidden bg-gray-50">
+      <Navbar />
       <div className="bg-noise" />
       
       <Hero />
